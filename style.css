@@ -1,0 +1,123 @@
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef4fb;color:#0b1f4d}.hidden{display:none!important}.login-screen{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#012b66,#0b64bd)}.login-card{width:360px;background:white;border-radius:24px;padding:34px;text-align:center;box-shadow:0 25px 70px rgba(0,0,0,.28)}.login-logo{width:105px;height:105px;object-fit:contain}.login-card h1{font-size:44px;margin:10px 0 0}.login-card p{color:#516070}.login-card input{margin:8px 0}.app{display:flex;min-height:100vh}.sidebar{width:310px;background:linear-gradient(180deg,#003c8f,#00204e);color:white;padding:28px 22px;position:fixed;height:100vh;overflow:hidden}.brand{display:flex;gap:14px;align-items:center;margin-bottom:35px}.brand-logo{width:82px;height:82px;object-fit:contain}.brand h1{font-size:42px;margin:0;line-height:.9}.brand p{margin:8px 0 0;line-height:1.35;color:#d7e7ff}nav{display:grid;gap:12px;position:relative;z-index:2}.nav-btn{border:0;background:transparent;color:white;text-align:left;padding:17px 18px;border-radius:13px;cursor:pointer;font-size:17px}.nav-btn.active,.nav-btn:hover{background:rgba(30,122,255,.85)}.sidebar-photo{position:absolute;left:0;bottom:0;width:100%;height:45%;opacity:.55}.sidebar-photo img{width:100%;height:100%;object-fit:cover}.sidebar-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#00204e00,#00204e)}.content{margin-left:310px;width:calc(100% - 310px);padding:0 24px 35px}.header{background:white;margin:0 -24px 25px;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 16px rgba(13,48,91,.12)}.header-title{display:flex;align-items:center;gap:18px}.header-title img{width:75px;height:75px;object-fit:contain}.header h2{margin:0;text-transform:uppercase;font-size:27px}.header p{margin:7px 0 0;color:#12356b}.specialty-card{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#0058ba,#00347d);color:white;border-radius:10px;padding:15px 22px;min-width:310px}.specialty-card span{font-size:35px}.specialty-card b{font-size:22px;display:block}.specialty-card small{display:block;line-height:1.25}.section{display:none}.section.active{display:block}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.topbar h2{margin:0;font-size:28px}.topbar p{margin:5px 0;color:#607089}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}.card,.panel{background:white;border:1px solid #dfe7f1;border-radius:10px;box-shadow:0 8px 22px rgba(15,52,96,.08);padding:22px}.card{position:relative;min-height:122px}.card span{display:block;color:#0b1f4d;font-weight:700;margin-bottom:12px}.card strong{font-size:42px;color:#1f5eb8}.card small{margin-left:7px;color:#607089}.card.green strong{color:#45a857}.card.orange strong{color:#f49a22}.card.purple strong{color:#674bb7}.dashboard-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:18px;margin-bottom:18px}.dashboard-grid.lower{grid-template-columns:1.35fr .9fr}.panel h3{margin-top:0;font-size:21px}.college-info{display:grid;grid-template-columns:minmax(420px,1fr) 360px;gap:26px;align-items:start}.college-info p{line-height:1.75;font-size:16px;margin:0 0 14px;max-width:100%}.college-info img{width:100%;height:260px;object-fit:cover;border-radius:12px;box-shadow:0 10px 24px rgba(15,52,96,.16)}.grid{display:grid;grid-template-columns:370px 1fr;gap:18px}.form-panel{display:grid;gap:12px}label{display:grid;gap:6px;font-size:14px;font-weight:700;color:#23365f}input,select{width:100%;padding:12px;border:1px solid #bfd0e5;border-radius:8px;font-size:14px;background:white}button{background:#1f5eb8;color:white;border:0;border-radius:8px;padding:12px 16px;font-weight:700;cursor:pointer}.secondary{background:#e8eef6;color:#0b1f4d}.actions,.filters{display:flex;gap:10px}.filters{margin-bottom:14px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:780px}th,td{padding:12px;border:1px solid #e1e8f0;text-align:left;font-size:14px}th{background:#f4f8fd;color:#0b1f4d}.badge{display:inline-block;padding:6px 10px;border-radius:6px;font-size:12px;font-weight:700}.ok{background:#e4f8e9;color:#168238;border:1px solid #83d596}.bad{background:#fff0da;color:#d06b00;border:1px solid #ffbe70}.study{background:#e4f0ff;color:#1f5eb8;border:1px solid #8eb8f6}.row-actions{display:flex;gap:6px}.row-actions button{font-size:12px;padding:8px 10px}.danger{background:#dc2626}.wide-btn{display:block;margin:20px auto 0;min-width:290px}.news-item{border-bottom:1px solid #e5edf6;padding:13px 0}.news-item b{display:block}.news-item span{float:right;color:#667894;font-size:13px}.news-item p{margin:8px 0;color:#44546d}.bar{margin:15px 0}.bar-label{display:flex;justify-content:space-between;margin-bottom:7px}.bar-line{height:14px;background:#e3ebf5;border-radius:999px;overflow:hidden}.bar-fill{height:100%;background:#1f5eb8;border-radius:999px}.about p{font-size:16px;line-height:1.7}footer{margin-left:310px;background:#00347d;color:white;text-align:center;padding:18px}@media(max-width:1000px){.sidebar{position:relative;width:100%;height:auto}.content,footer{margin-left:0;width:100%}.app{display:block}.sidebar-photo{display:none}.header{display:block}.specialty-card{margin-top:15px}.cards{grid-template-columns:repeat(2,1fr)}.dashboard-grid,.dashboard-grid.lower,.grid,.college-info{grid-template-columns:1fr}}@media(max-width:560px){.cards{grid-template-columns:1fr}.header h2{font-size:20px}.brand h1{font-size:34px}.actions,.filters{display:block}.actions button,.filters *{margin:6px 0}}
+.about-college{overflow:hidden}
+.about-college h3{border-left:5px solid #1f5eb8;padding-left:12px}
+.about-college b{color:#00347d}
+@media(max-width:1200px){
+  .college-info{grid-template-columns:1fr}
+  .college-info img{height:320px}
+}
+
+.department-hero{display:grid;grid-template-columns:1.2fr 420px;gap:28px;align-items:center;background:linear-gradient(135deg,#ffffff,#f4f8ff)}
+.department-hero p{font-size:16px;line-height:1.75;color:#18315e}
+.department-hero img{width:100%;height:280px;object-fit:cover;border-radius:12px;box-shadow:0 12px 28px rgba(0,45,100,.16)}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.mini-stats div{background:#eef5ff;border-left:4px solid #1f5eb8;border-radius:8px;padding:14px}
+.mini-stats b{font-size:28px;color:#00347d;display:block}
+.mini-stats span{font-size:13px;color:#53657d}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
+.check-list{padding-left:0;list-style:none;margin:0}
+.check-list li{padding:10px 0 10px 32px;border-bottom:1px solid #edf2f7;position:relative;line-height:1.45}
+.check-list li:before{content:"✓";position:absolute;left:0;top:9px;background:#e8f4ef;color:#168238;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-weight:700}
+.staff-panel{margin-top:18px}
+.teacher-card{display:grid;grid-template-columns:110px 1fr;gap:22px;align-items:start}
+.teacher-photo{width:110px;height:110px;border-radius:18px;background:linear-gradient(135deg,#00347d,#1f5eb8);color:white;display:grid;place-items:center;font-size:34px;font-weight:800;box-shadow:0 10px 25px rgba(0,52,125,.25)}
+.teacher-card h4{font-size:22px;margin:0 0 10px;color:#00347d}
+.teacher-card p{line-height:1.65;margin:8px 0;color:#253858}
+.student-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.student-card{background:white;border:1px solid #dfe7f1;border-radius:14px;padding:22px;text-align:center;box-shadow:0 8px 22px rgba(15,52,96,.08)}
+.avatar{width:86px;height:86px;border-radius:50%;background:#f0f5fc;color:#00347d;border:3px solid #1f5eb8;display:grid;place-items:center;font-size:28px;font-weight:800;margin:0 auto 14px}
+.student-card h3{margin:8px 0 4px;font-size:18px}
+.student-card p{margin:0;color:#607089}
+.student-card span{display:inline-block;margin-top:12px;background:#eaf2ff;color:#1f5eb8;border-radius:999px;padding:7px 12px;font-weight:700;font-size:13px}
+.note-panel{margin-top:18px}
+@media(max-width:1100px){.department-hero,.info-grid{grid-template-columns:1fr}.student-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.student-grid,.mini-stats,.teacher-card{grid-template-columns:1fr}.teacher-photo{margin:auto}}
+
+/* Final fixes */
+.brand-text-only{margin-bottom:26px}
+.brand-text-only h1{font-size:44px;letter-spacing:.5px}
+.brand-text-only p{font-size:14px;max-width:230px}
+.sidebar{padding:22px 18px;overflow-y:auto}
+.sidebar .brand-logo{display:none}
+nav{gap:8px}
+.nav-btn{padding:13px 14px;font-size:16px}
+.sidebar-photo{height:34%;opacity:.34}
+footer{font-size:15px}
+.teacher-icon{font-size:42px;background:linear-gradient(135deg,#eef5ff,#dcecff);color:#00347d;border:2px solid #1f5eb8}
+
+.year-tabs{display:flex;gap:10px;margin:8px 0 20px;flex-wrap:wrap}
+.year-tab{background:#eaf2ff;color:#00347d;border:1px solid #b8d2f4}
+.year-tab.active{background:#1f5eb8;color:#fff}
+.year-group-view{display:grid;gap:18px}
+.year-card{background:white;border:1px solid #dfe7f1;border-radius:14px;box-shadow:0 8px 22px rgba(15,52,96,.08);overflow:hidden}
+.year-card-header{background:linear-gradient(135deg,#00347d,#1f5eb8);color:white;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
+.year-card-header h3{margin:0;font-size:22px}
+.year-card-header span{background:rgba(255,255,255,.18);padding:7px 12px;border-radius:999px;font-weight:700}
+.group-list{padding:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.group-card{border:1px solid #e0e8f2;border-radius:12px;padding:16px;background:#f9fbff}
+.group-card h4{margin:0 0 10px;color:#00347d}
+.group-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.group-meta span{background:#eef5ff;color:#1f5eb8;border-radius:999px;padding:6px 10px;font-size:13px;font-weight:700}
+.student-mini{display:grid;gap:8px}
+.student-mini div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #edf2f7;padding:8px 0}
+.student-mini b{color:#0b1f4d}
+.student-mini small{color:#617089}
+@media(max-width:900px){.group-list{grid-template-columns:1fr}}
+
+/* Clean photo fix for 'О колледже' */
+.college-info-clean{
+  display:block !important;
+}
+.college-info-clean .college-banner{
+  width:100% !important;
+  height:260px !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  border-radius:12px !important;
+  margin-bottom:18px !important;
+  box-shadow:0 10px 24px rgba(15,52,96,.16) !important;
+}
+.college-info-clean p{
+  font-size:16px !important;
+  line-height:1.7 !important;
+  margin:0 0 13px !important;
+}
+
+.student-grid{grid-template-columns:repeat(4,1fr)}
+.student-card{padding:18px 14px}
+.student-card h3{font-size:16px;line-height:1.3}
+@media(max-width:1200px){.student-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.student-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.student-grid{grid-template-columns:1fr}}
+
+/* Compact graduate form fix */
+.grid{grid-template-columns:330px 1fr !important;align-items:start}
+.form-panel{gap:9px !important;padding:18px !important}
+.form-panel h3{font-size:22px;margin-bottom:6px}
+.form-panel label{gap:5px;font-size:13px}
+.form-panel input,.form-panel select{height:42px !important;padding:8px 10px !important;font-size:13px !important}
+.form-panel .actions{margin-top:4px}
+.form-panel button{padding:10px 13px}
+.table-panel{padding:18px}
+.filters input,.filters select{height:42px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr !important}}
+
+.group-title{
+ margin:25px 0 15px;
+ color:#003b82;
+ font-size:24px;
+}
+
+.header-side{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.admin-badge{
+  background:#eef5ff;
+  color:#00347d;
+  border:1px solid #b8d2f4;
+  border-radius:999px;
+  padding:8px 16px;
+  font-weight:700;
+  font-size:14px;
+}
+.about h2{border-left:5px solid #1f5eb8;padding-left:12px}
+.about p{font-size:16px;line-height:1.65}
+@media(max-width:1000px){.header-side{align-items:flex-start}.admin-badge{margin-bottom:10px}}

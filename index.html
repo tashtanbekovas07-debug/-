@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>БАДК — АИС учета трудоустройства выпускников</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <img src="assets/badk_logo.png" alt="БАДК" class="login-logo">
+      <h1>БАДК</h1>
+      <p>АИС учета трудоустройства выпускников</p>
+      <input id="loginUser" placeholder="Логин" value="admin">
+      <input id="loginPass" placeholder="Пароль" type="password" value="1234">
+      <button id="loginBtn">Войти в систему</button>
+      <small>Демо доступ: admin / 1234</small>
+    </div>
+  </div>
+
+  <div class="app hidden" id="app">
+    <aside class="sidebar">
+      <div class="brand brand-text-only">
+        <div>
+          <h1>БАДК</h1>
+          <p>Бишкекский автомобильно-дорожный колледж им. К. Кольбаева</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-section="dashboard">🏠 Главная</button>
+        <button class="nav-btn" data-section="graduates">👥 Выпускники</button>
+        <button class="nav-btn" data-section="years">📁 По годам</button>
+        <button class="nav-btn" data-section="reports">📊 Отчеты и статистика</button>
+        <button class="nav-btn" data-section="department">🏫 ПЦК ПКС</button>
+        <button class="nav-btn" data-section="students">🧑‍💻 Студенты</button>
+        <button class="nav-btn" data-section="about">ℹ️ О проекте</button>
+      </nav>
+      <div class="sidebar-photo">
+        <img src="assets/badk_building.png" alt="Здание БАДК">
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="header">
+        <div class="header-title">
+          <img src="assets/badk_logo.png" alt="Логотип">
+          <div>
+            <h2>Бишкекский автомобильно-дорожный колледж</h2>
+            <p>Автоматизированная информационная система учета трудоустройства выпускников</p>
+          </div>
+        </div>
+        <div class="header-side">
+          <div class="specialty-card">
+            <span>💻</span>
+            <div><b>230111</b><small>Программирование в компьютерных системах</small></div>
+          </div>
+          <div class="admin-badge">Администратор ПЦК</div>
+        </div>
+      </header>
+
+      <section id="dashboard" class="section active">
+        <div class="cards">
+          <div class="card"><span>Всего выпускников</span><strong id="totalCount">0</strong><small>чел.</small></div>
+          <div class="card green"><span>Трудоустроены</span><strong id="employedCount">0</strong><small>чел.</small></div>
+          <div class="card orange"><span>Не трудоустроены</span><strong id="unemployedCount">0</strong><small>чел.</small></div>
+          <div class="card purple"><span>Процент занятости</span><strong id="employmentRate">0%</strong><small>трудоустроены</small></div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="panel about-college">
+            <h3>О колледже</h3>
+            <div class="college-info college-info-clean">
+              <img src="assets/badk_building.png" alt="БАДК" class="college-banner">
+              <div>
+                <p><b>Бишкекский автомобильно-дорожный колледж им. К. Кольбаева</b> — учебное заведение среднего профессионального образования. Колледж ведет историю с 1957 года и готовит специалистов для дорожной, транспортной и IT-сферы.</p>
+                <p>В структуре IT-направления специальность <b>230111 «Программирование в компьютерных системах»</b> ориентирована на подготовку техников-программистов.</p>
+                <p>Система предназначена для учета выпускников ПКС: хранения данных, поиска, анализа трудоустройства и подготовки отчетности по выпускникам.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Статистика по годам выпуска</h3>
+            <canvas id="chart" width="600" height="320"></canvas>
+          </div>
+        </div>
+
+        <div class="dashboard-grid lower">
+          <div class="panel">
+            <h3>Последние добавленные выпускники</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>ФИО</th><th>Год</th><th>Группа</th><th>Специальность</th><th>Статус</th><th>Организация</th></tr></thead>
+                <tbody id="recentTable"></tbody>
+              </table>
+            </div>
+            <button class="wide-btn" data-go="graduates">Перейти к базе выпускников</button>
+          </div>
+
+          <div class="panel news">
+            <h3>Новости колледжа</h3>
+            <div class="news-item"><b>Ярмарка вакансий 2025</b><span>15.05.2025</span><p>Проведена встреча выпускников с работодателями IT-сферы.</p></div>
+            <div class="news-item"><b>Практика студентов</b><span>28.04.2025</span><p>Студенты специальности 230111 проходят производственную практику.</p></div>
+            <div class="news-item"><b>Выпуск 2025</b><span>10.04.2025</span><p>Подготовка данных по выпускникам для отчета кафедры.</p></div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="years" class="section">
+        <div class="topbar">
+          <div>
+            <h2>Выпускники по годам</h2>
+            <p>Группы специальности 230111 «Программирование в компьютерных системах» с 2024 года</p>
+          </div>
+        </div>
+
+        <div class="year-tabs">
+          <button class="year-tab active" data-year="2024">2024</button>
+          <button class="year-tab" data-year="2025">2025</button>
+          <button class="year-tab" data-year="2026">2026</button>
+        </div>
+
+        <div id="yearGroupView" class="year-group-view"></div>
+      </section>
+
+      <section id="graduates" class="section">
+        <div class="topbar">
+          <div><h2>База выпускников</h2><p>230111 Программирование в компьютерных системах</p></div>
+          <button id="exportBtn">Экспорт CSV</button>
+        </div>
+
+        <div class="grid">
+          <form id="graduateForm" class="panel form-panel">
+            <h3 id="formTitle">Добавить выпускника</h3>
+            <input type="hidden" id="editId"/>
+            <label>ФИО<input id="fullName" required placeholder="Фамилия Имя Отчество"/></label>
+            <label>Год выпуска<input id="year" type="number" required value="2025" placeholder="2025"/></label>
+            <label>Группа<input id="group" required value="ПКС-9-1-22" placeholder="ПКС-9-1-22"/></label>
+            <label>Специальность<input id="specialty" required value="230111 Программирование в компьютерных системах"/></label>
+            <label>Телефон<input id="phone" placeholder="+996 ..."/></label>
+            <label>Email<input id="email" type="email" placeholder="example@mail.com"/></label>
+            <label>Статус
+              <select id="status">
+                <option value="Трудоустроен">Трудоустроен</option>
+                <option value="Не трудоустроен">Не трудоустроен</option>
+                <option value="Продолжает обучение">Продолжает обучение</option>
+              </select>
+            </label>
+            <label>Организация<input id="organization" placeholder="IT-компания / банк / гос. учреждение"/></label>
+            <label>Должность<input id="position" placeholder="Программист / IT-специалист"/></label>
+            <label>Город<input id="city" placeholder="Бишкек"/></label>
+            <div class="actions">
+              <button type="submit">Сохранить</button>
+              <button type="button" id="resetBtn" class="secondary">Очистить</button>
+            </div>
+          </form>
+
+          <div class="panel table-panel">
+            <div class="filters">
+              <input id="searchInput" placeholder="Поиск по ФИО, группе, организации..."/>
+              <select id="statusFilter">
+                <option value="">Все статусы</option>
+                <option value="Трудоустроен">Трудоустроен</option>
+                <option value="Не трудоустроен">Не трудоустроен</option>
+                <option value="Продолжает обучение">Продолжает обучение</option>
+              </select>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>ФИО</th><th>Год</th><th>Группа</th><th>Статус</th><th>Организация</th><th>Действия</th></tr></thead>
+                <tbody id="graduatesTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reports" class="section">
+        <div class="topbar"><div><h2>Отчеты и статистика</h2><p>Анализ трудоустройства выпускников 230111</p></div></div>
+        <div class="cards">
+          <div class="card green"><span>Трудоустроены</span><strong id="repEmployed">0</strong></div>
+          <div class="card orange"><span>Не трудоустроены</span><strong id="repUnemployed">0</strong></div>
+          <div class="card purple"><span>Продолжают обучение</span><strong id="repStudy">0</strong></div>
+        </div>
+        <div class="panel"><h3>Отчет по годам выпуска</h3><div id="yearStats"></div></div>
+      </section>
+
+
+      <section id="department" class="section">
+        <div class="topbar">
+          <div>
+            <h2>ПЦК «Информационные технологии и вычислительная техника»</h2>
+            <p>Специальность 230111 — Программирование в компьютерных системах</p>
+          </div>
+        </div>
+
+        <div class="department-hero panel">
+          <div>
+            <h3>О специальности ПКС</h3>
+            <p>ПКС — одна из востребованных IT-специальностей в системе среднего профессионального образования. Обучение направлено на подготовку специалистов, которые умеют разрабатывать, тестировать, внедрять и сопровождать программное обеспечение, работать с базами данных и веб-технологиями.</p>
+            <div class="mini-stats">
+              <div><b>2024</b><span>начало учета данных</span></div>
+              <div><b>23</b><span>студента ПКСК-9-1-23</span></div>
+              <div><b>70%+</b><span>занятость / обучение</span></div>
+            </div>
+          </div>
+          <img src="assets/badk_building.png" alt="БАДК">
+        </div>
+
+        <div class="info-grid">
+          <div class="panel">
+            <h3>Что изучают студенты</h3>
+            <ul class="check-list">
+              <li>Языки программирования: C++, C#, Python</li>
+              <li>Базы данных: SQL, проектирование и управление БД</li>
+              <li>Веб-разработка: HTML, CSS, JavaScript, клиентская и серверная часть</li>
+              <li>Тестирование программного обеспечения и поиск ошибок</li>
+              <li>Администрирование и техническая поддержка IT-систем</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Кем можно работать после выпуска</h3>
+            <ul class="check-list">
+              <li>Младший разработчик / Junior Developer</li>
+              <li>Web-программист или верстальщик</li>
+              <li>Тестировщик ПО / QA-инженер</li>
+              <li>Специалист технической поддержки IT-систем</li>
+              <li>Оператор и администратор баз данных</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel staff-panel">
+          <h3>Руководство IT-направлением</h3>
+          <div class="teacher-card">
+            <div class="teacher-photo teacher-icon">👩‍🏫</div>
+            <div>
+              <h4>Шабиева Айзада Эмилбековна</h4>
+              <p><b>Должность:</b> преподаватель БАДК им. К. Кольбаева, председатель ПЦК «Программирование в компьютерных системах».</p>
+              <p>Координирует учебный процесс, практическую подготовку студентов специальности <b>230111 «Программирование в компьютерных системах»</b> и развитие IT-направления колледжа.</p>
+              <p><b>Основная деятельность:</b> организация учебных планов, практики, проектной деятельности и подготовки будущих техников-программистов.</p>
+              <p><b>Достижения:</b> подготовка студентов к конкурсам, олимпиадам и мероприятиям по программированию и цифровой безопасности.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="students" class="section">
+        <div class="topbar">
+          <div>
+            <h2>Студенты и выпускники ПКС</h2>
+            <p>Карточки студентов и выпускников специальности 230111</p>
+          </div>
+        </div>
+
+        
+        <h2 class="group-title">ПКСК-9-1-23</h2><div class="student-grid">
+<div class="student-card">
+<div class="avatar">АН</div>
+<h3>Абдалбеков Назар Даниярович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">АУ</div>
+<h3>Автандил уулу Актан</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">АС</div>
+<h3>Асанов Сүйүнбай Бузурманкулович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">БЭ</div>
+<h3>Бектуров Эмир Бектурович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">БА</div>
+<h3>Биккенин Артур Ильдарович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ГГ</div>
+<h3>Галаев Герман Янович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ДН</div>
+<h3>Дурусбеков Нурсен Алтынбекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ЖБ</div>
+<h3>Жекшенбекова Бермет Замирбековна</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ИН</div>
+<h3>Иманалиев Нурсултан Орозобекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">КА</div>
+<h3>Каленова Айназик Нурлановна</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">КА</div>
+<h3>Келсинбеков Атайбек Келсинбекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">КУ</div>
+<h3>Кубанычбек уулу Байсалбек</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">КБ</div>
+<h3>Курманкалиев Бекжан Максатович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">МБ</div>
+<h3>Маматов Бекзат Туралиевич</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">МА</div>
+<h3>Мелисова Айэлита Мелисовна</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">МХ</div>
+<h3>Меркибаева Хадича Талантбековна</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ОА</div>
+<h3>Ордобаев Акылбек Максатович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">СА</div>
+<h3>Сапарбеков Актан Каныбекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">СС</div>
+<h3>Сатыбалдиев Самар Телекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">СБ</div>
+<h3>Сейитпеков Бердибек Сейитпекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">СИ</div>
+<h3>Султангазиев Исламбек Султанбекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">СМ</div>
+<h3>Султангазиев Муслимбек Султанбекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ТА</div>
+<h3>Токтоев Актилек</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ЭМ</div>
+<h3>Эсенбеков Мадияр Нурланбекович</h3>
+<p>ПКСК-9-1-23</p>
+<span>Выпускной курс</span>
+</div></div><h2 class="group-title">ПКСК-9-2-23</h2><div class="student-grid">
+<div class="student-card">
+<div class="avatar">АА</div>
+<h3>Абдиназаров Азизбек Абдимуталович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">АТ</div>
+<h3>Асыранбеков Талгат Уланбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">БН</div>
+<h3>Бакеев Нурислам Шамович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">БА</div>
+<h3>Барпыбеков Акжол Алмазбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ГМ</div>
+<h3>Галбаев Мухамед Абдулазизович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ЖД</div>
+<h3>Жаныбеков Данияр Замирбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ЖР</div>
+<h3>Жекшеналиев Руслан Уланович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ЖУ</div>
+<h3>Жылдызбек уулу Чынгызбек</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ИА</div>
+<h3>Ибраимов Арген Медетбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ИМ</div>
+<h3>Ильязов Марсель Эльдарович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ИИ</div>
+<h3>Ишенов Ильяс Аязбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ММ</div>
+<h3>Мааткеримов Марлен Жунушалыевич</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">НА</div>
+<h3>Надырбеков Алихан Алмазбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">НС</div>
+<h3>Намазбеков Султан Даниярович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ОБ</div>
+<h3>Орозобеков Батырбек Уланович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">РН</div>
+<h3>Рысбеков Нурэл Кубанычбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">СТ</div>
+<h3>Садыкахунов Тахиржан Давранович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">СР</div>
+<h3>Салыкжанов Равшан Рустамович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ТУ</div>
+<h3>Талантбек уулу Даниэль</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ТУ</div>
+<h3>Темирбеков Улукбек Жыргалбекович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ТА</div>
+<h3>Токторбаев Азирет Тургуналиевич</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ТИ</div>
+<h3>Төлөмүшов Ильяс Төлөмүшович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ТС</div>
+<h3>Туратбеков Сапарбек Нурланович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">УА</div>
+<h3>Уланов Акбар Уланович</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ЭА</div>
+<h3>Эмилбекова Адиля Жусупбековна</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div>
+<div class="student-card">
+<div class="avatar">ЖУ</div>
+<h3>Жайлообек уулу Азат</h3>
+<p>ПКСК-9-2-23</p>
+<span>Выпускной курс</span>
+</div></div></section>
+
+      <section id="about" class="section">
+        <div class="panel about">
+          <h2>О проекте</h2>
+          <p><b>Тема:</b> Разработка автоматизированной информационной системы для учета трудоустройства выпускников ПЦК «Программирование в компьютерных системах».</p>
+          <p><b>Цель проекта:</b> автоматизация учета выпускников, хранение сведений об их трудоустройстве и формирование отчетной информации для ПЦК.</p>
+          <p><b>Учебное заведение:</b> БАДК — Бишкекский автомобильно-дорожный колледж им. К. Кольбаева.</p>
+          <p><b>Специальность:</b> 230111 Программирование в компьютерных системах.</p>
+          <p><b>ПЦК:</b> Программирование в компьютерных системах.</p>
+          <p><b>Председатель ПЦК:</b> Шабиева Айзада Эмилбековна.</p>
+          <p><b>Основные функции:</b> добавление, редактирование, удаление, поиск, фильтрация, учет статуса трудоустройства, статистика по годам и экспорт данных в CSV.</p>
+          <p><b>Использованные технологии:</b> HTML, CSS, JavaScript, LocalStorage.</p>
+          <p><b>Разработчик:</b> Туратбеков Сапарбек Нурланович, группа ПКСК-9-1-23.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>© 2025 Бишкекский автомобильно-дорожный колледж им. К. Кольбаева</footer>
+  <script src="script.js"></script>
+</body>
+</html>
